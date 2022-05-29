@@ -101,10 +101,17 @@ namespace TicTacToe
         private void DeclareWinner()
         {
             DisplayBoard(false);
-            player = !player;
 
+            player = !player;
             char winner = player ? '1' : '2';
+
             Console.Write("\nPlayer " + winner.ToString() +  " wins!");
+            Restart();
+        }
+
+        private void Restart()
+        {
+            Console.WriteLine("\n\nAdd restart functionality...");
         }
     }
 }
