@@ -21,10 +21,10 @@ namespace TicTacToe
 
         public void Start()
         {
-            DisplayBoard();
+            DisplayBoard(true);
         }
 
-        private void DisplayBoard()
+        private void DisplayBoard(bool makeMove)
         {
             Console.WriteLine();
 
@@ -34,7 +34,7 @@ namespace TicTacToe
                 if (i != 2) Console.WriteLine("---------");
             }
 
-            MakeMove();
+            if (makeMove) MakeMove();
         }
 
         private void MakeMove()
@@ -51,7 +51,7 @@ namespace TicTacToe
         private void UpdateBoard(char position)
         {
             char symbol = player ? 'X' : 'O';
-            player = !player; // Switch player
+            player = !player;
 
             for (int i = 0; i < board.GetLength(0); ++i)
             {
@@ -74,10 +74,37 @@ namespace TicTacToe
 
         private void CheckWinner()
         {
-            // NOTE: Check if there's a winner...
+            bool hasWon = false;
 
-            // Otherwise continue
-            DisplayBoard();
+            for (int i = 0; i < board.GetLength(0); ++i)
+            {
+                if (board[i, 0] == board[i, 1] && board[i, 1] == board[i, 2])
+                    hasWon = true;
+                if (board[0, i] == board[1, i] && board[1, i] == board[2, i])
+                    hasWon = true;
+            }
+
+            if (board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2])
+                hasWon = true;
+            if (board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0])
+                hasWon = true;
+
+            if (hasWon)
+            {
+                DeclareWinner();
+                return;
+            }
+ 
+            DisplayBoard(true);
+        }
+
+        private void DeclareWinner()
+        {
+            DisplayBoard(false);
+            player = !player;
+
+            char winner = player ? '1' : '2';
+            Console.Write("\nPlayer " + winner.ToString() +  " wins!");
         }
     }
 }
