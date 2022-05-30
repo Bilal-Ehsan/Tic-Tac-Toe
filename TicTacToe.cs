@@ -4,19 +4,19 @@ namespace TicTacToe
 {
     class TicTacToe
     {
-        private static char[,] board;
-        private static bool player;
+        private static char[,] _board;
+        private static bool _player;
 
         public TicTacToe()
         {
-            board = new char[3, 3] 
+            _board = new char[3, 3] 
             {
                 { '1', '2', '3' },
                 { '4', '5', '6' },
                 { '7', '8', '9' }
             };
 
-            player = true; // Player 1
+            _player = true; // Player 1
         }
 
         public void Start()
@@ -28,9 +28,9 @@ namespace TicTacToe
         {
             Console.WriteLine();
 
-            for (int i = 0; i < board.GetLength(0); ++i)
+            for (int i = 0; i < _board.GetLength(0); ++i)
             {
-                Console.WriteLine($"{board[i, 0]} | {board[i, 1]} | {board[i, 2]}");
+                Console.WriteLine($"{_board[i, 0]} | {_board[i, 1]} | {_board[i, 2]}");
                 if (i != 2) Console.WriteLine("---------");
             }
 
@@ -39,7 +39,7 @@ namespace TicTacToe
 
         private void MakeMove()
         {  
-            char playerNum = player == true ? '1' : '2';
+            char playerNum = _player == true ? '1' : '2';
             Console.Write("\nPlayer " + playerNum.ToString() +  ": ");
 
             string userInput = Console.ReadLine();
@@ -50,22 +50,22 @@ namespace TicTacToe
 
         private void UpdateBoard(char position)
         {
-            char symbol = player ? 'X' : 'O';
-            player = !player;
+            char symbol = _player ? 'X' : 'O';
+            _player = !_player;
 
-            for (int i = 0; i < board.GetLength(0); ++i)
+            for (int i = 0; i < _board.GetLength(0); ++i)
             {
-                if (board[i, 0] == position)
+                if (_board[i, 0] == position)
                 {
-                    board[i, 0] = symbol;
+                    _board[i, 0] = symbol;
                 }
-                else if (board[i, 1] == position)
+                else if (_board[i, 1] == position)
                 {
-                    board[i, 1] = symbol;
+                    _board[i, 1] = symbol;
                 }
-                else if (board[i, 2] == position)
+                else if (_board[i, 2] == position)
                 {
-                    board[i, 2] = symbol;
+                    _board[i, 2] = symbol;
                 }
             }
 
@@ -76,17 +76,17 @@ namespace TicTacToe
         {
             bool hasWon = false;
 
-            for (int i = 0; i < board.GetLength(0); ++i)
+            for (int i = 0; i < _board.GetLength(0); ++i)
             {
-                if (board[i, 0] == board[i, 1] && board[i, 1] == board[i, 2])
+                if (_board[i, 0] == _board[i, 1] && _board[i, 1] == _board[i, 2])
                     hasWon = true;
-                if (board[0, i] == board[1, i] && board[1, i] == board[2, i])
+                if (_board[0, i] == _board[1, i] && _board[1, i] == _board[2, i])
                     hasWon = true;
             }
 
-            if (board[0, 0] == board[1, 1] && board[1, 1] == board[2, 2])
+            if (_board[0, 0] == _board[1, 1] && _board[1, 1] == _board[2, 2])
                 hasWon = true;
-            if (board[0, 2] == board[1, 1] && board[1, 1] == board[2, 0])
+            if (_board[0, 2] == _board[1, 1] && _board[1, 1] == _board[2, 0])
                 hasWon = true;
 
             if (hasWon)
@@ -102,8 +102,8 @@ namespace TicTacToe
         {
             DisplayBoard(false);
 
-            player = !player;
-            char winner = player ? '1' : '2';
+            _player = !_player;
+            char winner = _player ? '1' : '2';
 
             Console.Write("\nPlayer " + winner.ToString() +  " wins!");
         }
