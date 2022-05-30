@@ -106,12 +106,6 @@ namespace TicTacToe
             char winner = player ? '1' : '2';
 
             Console.Write("\nPlayer " + winner.ToString() +  " wins!");
-            Restart();
-        }
-
-        private void Restart()
-        {
-            Console.WriteLine("\n\nAdd restart functionality...");
         }
     }
 }
