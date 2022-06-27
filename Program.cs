@@ -6,18 +6,18 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            string _play = null;
+            string play = null;
 
             do
             {
                 NewGame();
                 
                 Console.Write("\n\nPlay again? (y/n): ");
-                _play = Console.ReadLine();
+                play = Console.ReadLine();
 
-                if (_play == "y")
+                if (play == "y")
                     NewGame();
-            } while (_play != "n");
+            } while (play != "n");
 
             Console.WriteLine("\nGoodbye!");
         }
